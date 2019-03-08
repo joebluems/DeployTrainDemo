@@ -1,11 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactHover from 'react-hover';
 import './index.css';
 import {LineChart} from 'react-easy-chart';
 import { CsvToHtmlTable } from 'react-csv-to-table';
 import mlp from './nnet.png';
 import rforest from './randomForest.png';
+import bulb from './bulb.png';
+import HoverComponent from './HoverComponent'
+import TriggerComponent from './TriggerComponent'
+import './component.css'
+//import './styles.css'
 
+
+const optionsCursorTrueWithMargin = {
+  followCursor: true,
+  shiftX: 20,
+  shiftY: 0
+}
 
 const logits = `
 feature,coefficient,p-value
@@ -120,20 +132,28 @@ class MachineLearning extends React.Component {
    return (
       <form> 
       <label> <input name="nnet" type="checkbox" /> Neural Network
+<ReactHover options={optionsCursorTrueWithMargin}>
+  <ReactHover.Trigger type='trigger'> <TriggerComponent /> </ReactHover.Trigger>
+  <ReactHover.Hover type='hover'> <div className="hover"> <blockquote className="quote"> A <b>neural network</b> (also known as a multi-layer percetpron maps inputs to output through a specified number & size of hidden layers. Connections are intialized with random weights and activated using the sigmoid or tanh function. Data points are then fed forward through the network in order to estimate the target. <br/>The error is then propagated back through the network, adjusting the weights as needed. A network with two hidden layers is suffficient to find complex, non-linear patterns, but overfitting is possible. </blockquote> </div> </ReactHover.Hover>
+</ReactHover>
         ---> Hidden Layers: <input type="text" value="2"/> 
         , Hidden Layer Nodes: <input type="text" value="4,5"/>
+        <img src={bulb} alt="Logo" />
       </label> 
       <br />
       <label> <input name="lr" type="checkbox" /> Logistic Regression</label> 
+        <img src={bulb} alt="Logo" />
       <br />
       <label> <input name="rf" type="checkbox" /> Random Forest
         ---> No. Trees: <input type="text" value="400"/> 
         ,Max Depth: <input type="text" value="12"/>
+        <img src={bulb} alt="Logo" />
       </label> 
       <br />
       <label> <input name="gb" type="checkbox" /> Gradient Boosting
         ---> No. Trees: <input type="text" value="200"/> 
         Learn Rate: <input type="text" value="0.05"/>
+        <img src={bulb} alt="Logo" />
       </label> 
       <br />
       <label> <input name="svm" type="checkbox" /> SVM </label> 
@@ -149,8 +169,10 @@ class Choices extends React.Component {
    return (
       <form> 
        <label> Train sample ratio <input type="text" value="0.5" /> </label>
+        <img src={bulb} alt="Logo" />
        <br />
-       <b> Weighting for Ensemble...</b> <br />
+       <b> Weighting for Ensemble...</b> 
+        <img src={bulb} alt="Logo" /> <br />
        <label> Random Forest <input type="text" value="0.3" /> </label>
        <br />
        <label> Logistic Reg. <input type="text" value="0.3" /> </label>
@@ -196,22 +218,35 @@ class Calculator extends React.Component {
         <p><b>2. Show the schema and allow for some user manipulation (create a feature).</b></p>
         <ShowSchema filename={filename}/>
         <CsvToHtmlTable data={sampleData} csvDelimiter="," tableClassName="table table-striped table-hover"/> 
-        <p><b>3. Provide user choice for classification algorithms ...</b></p>
+        <p><b>3. Provide user choice for classification algorithms ...</b>
+<ReactHover options={optionsCursorTrueWithMargin}>
+  <ReactHover.Trigger type='trigger'> <TriggerComponent /> </ReactHover.Trigger>
+  <ReactHover.Hover type='hover'> <div className="hover"> <blockquote className="quote"> <b>Machine-Learning</b> Algorithms are used to identify relationships among the features that are useful in predicting the target. It is generally preferred to use multiple types of algorithms (e.g. linear, non-linear, tree-based, etc.) because each has limitations when applied alone. </blockquote> </div></ReactHover.Hover>
+</ReactHover>
+        </p>
         <MachineLearning/>
         <p><b>4. Based on algorithms selected, get additional training parameters ...</b></p>
         <Choices/>
         <p><b>5. Interpreting models & Threshold Analysis...</b></p>
-	<p>Neural Network Weights </p>
+	<p>Neural Network Weights 
+        <img src={bulb} alt="Logo" /> </p>
         <img src={mlp} alt="Logo" />
         <CsvToHtmlTable data={weights} csvDelimiter="," tableClassName="table table-striped table-hover"/> 
-	<p>Random Forest - Feature Importance </p>
+	<p>Random Forest - Feature Importance 
+        <img src={bulb} alt="Logo" />
+        </p>
         <img src={rforest} alt="Logo" />
         <CsvToHtmlTable data={importance} csvDelimiter="," tableClassName="table table-striped table-hover"/> 
-	<p>Logistic Regression - Coefficient Interpretation </p>
-        <CsvToHtmlTable data={logits} csvDelimiter="," tableClassName="table table-striped table-hover"/> 
-        <p><b>6. Model performance metrics ...</b></p>
+	<p>Logistic Regression - Coefficient Interpretation 
+        <img src={bulb} alt="Logo" /> </p>
+        <CsvToHtmlTable data={logits} csvDelimiter="," tableClassName="table table-striped table-hover"/>
+        <p><b>6. Model performance metrics ...</b>
+        <img src={bulb} alt="Logo" />
+        </p>
         <CsvToHtmlTable data={metrics} csvDelimiter="," tableClassName="table table-striped table-hover"/> 
-        <p><b>7. ROC's for algorithms ...</b></p>
+        <p><b>7. ROC's for algorithms ...</b>
+        <img src={bulb} alt="Logo" />
+        </p>
         <LineChart
          axes
          axisLabels={{x: 'true positive (%)', y: 'false positive (%)'}}

@@ -1,0 +1,34 @@
+.hover {
+    background-color: papayawhip;   
+    width: 600px;
+    border-style: dashed;
+    border-color: chocolate;
+}
+
+.hover2 {
+    background-color: papayawhip;   
+    border-style: dashed;
+    width: 600px;
+    border-color: chocolate;
+}
+
+.trigger {
+    font-size: 0.8em;
+    background-color: #44B39D;
+    color: white;
+    width: 200px;
+}
+
+.quote {
+    padding: 15px 25px;
+}
+
+.thumbnail {
+    float: left;
+    margin-top: 40px;
+}
+
+.people {
+    float: right;
+    margin-top: -23px;
+}
